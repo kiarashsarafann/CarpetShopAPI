@@ -12,6 +12,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('token/', obtain_auth_token, name='token_generator'),
-    # path('login/', user_login, name='login'),
+    path('login/', user_login, name='login'),
     # path('logout/', user_logout, name='logout'),
 ]
