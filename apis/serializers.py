@@ -9,7 +9,7 @@ class CarpetSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializers(serializers.ModelSerializer):
     username = serializers.CharField(
         required=False,
     )
