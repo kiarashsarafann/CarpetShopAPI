@@ -26,6 +26,7 @@ def user_login(request):
                 user.save()
                 return Response({
                     'id': user.id, 'email': user.email, 'username': user.username, 'token': token,
+                    'is_active': user.is_active,
                     'message': 'ورود با موفقیت انجام شد'
 
                 })
