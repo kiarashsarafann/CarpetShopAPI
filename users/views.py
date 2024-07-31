@@ -12,6 +12,24 @@ from .models import CustomUser
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
+def user_register(request):
+    if request.method == 'POST':
+        serializer = UserSerializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            raise ValidationError('مقادیر وارد شده صحیح نمیباشد یا ایمیل تکراری است')
+        response = {
+            'user': serializer.data,
+            'token': Token.objects.get_or_create(
+                user=CustomUser.objects.filter(email__iexact=serializer.data['email']).first())[0].key,
+
+            }
+        return Response(response, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
 def user_login(request):
     if request.method == 'POST':
         email = request.data.get('email')
