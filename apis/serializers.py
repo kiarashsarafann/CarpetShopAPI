@@ -2,7 +2,6 @@ import secrets
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.validators import UniqueValidator
-
 from carpets.models import *
 from users.models import *
 
@@ -45,5 +44,6 @@ class UserSerializers(serializers.ModelSerializer):
             last_name=validated_data['last_name'],
             address=validated_data['address'],
         )
+        user.is_active = True
         user.save()
         return user
