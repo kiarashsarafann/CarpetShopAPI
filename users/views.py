@@ -24,7 +24,7 @@ def user_register(request):
             'token': Token.objects.get_or_create(
                 user=CustomUser.objects.filter(email__iexact=serializer.data['email']).first())[0].key,
 
-            }
+        }
         return Response(response, status=status.HTTP_200_OK)
 
 
@@ -43,8 +43,8 @@ def user_login(request):
                 user.is_active = True
                 user.save()
                 return Response({
-                    'id': user.id, 'email': user.email, 'username': user.username, 'token': token,
-                    'is_active': user.is_active,
+                    'id': user.id, 'email': user.email, 'username': user.username, 'first_name': user.first_name,
+                    'last_name': user.last_name, 'address': user.address, 'token': token, 'is_active': user.is_active,
                     'message': 'ورود با موفقیت انجام شد'
 
                 })
