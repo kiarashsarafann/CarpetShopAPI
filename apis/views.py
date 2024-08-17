@@ -11,3 +11,18 @@ class UserViewSet(viewsets.ModelViewSet):
 class CarpetViewSet(viewsets.ModelViewSet):
     queryset = Carpet.objects.all()
     serializer_class = CarpetSerializers
+
+
+class SizeViewSet(viewsets.ModelViewSet):
+    queryset = Size.objects.all()
+    serializer_class = SizeSerializers
+
+
+class MaterialViewSet(viewsets.ModelViewSet):
+    queryset = Material.objects.all()
+    serializer_class = MaterialSerilizers
+
+
+class ReedViewSet(viewsets.ModelViewSet):
+    queryset = Reed.objects.all()
+    serializer_class = ReedSerilizers
