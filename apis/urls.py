@@ -6,6 +6,9 @@ from .views import *
 
 router = routers.DefaultRouter()
 router.register('carpet', CarpetViewSet)
+router.register('material', MaterialViewSet)
+router.register('size', SizeViewSet)
+router.register('reed', ReedViewSet)
 router.register('user', UserViewSet)
 
 urlpatterns = [
