@@ -6,7 +6,29 @@ from carpets.models import *
 from users.models import *
 
 
+class SizeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Size
+        fields = '__all__'
+
+
+class MaterialSerilizers(serializers.ModelSerializer):
+    class Meta:
+        model = Material
+        fields = '__all__'
+
+
+class ReedSerilizers(serializers.ModelSerializer):
+    class Meta:
+        model = Reed
+        fields = '__all__'
+
+
 class CarpetSerializers(serializers.ModelSerializer):
+    material = serializers.StringRelatedField(read_only=True)
+    reed = serializers.StringRelatedField(read_only=True)
+    size = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = Carpet
         fields = '__all__'
