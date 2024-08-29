@@ -24,10 +24,17 @@ class ReedSerilizers(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class DesignSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Design
+        fields = '__all__'
+
+
 class CarpetSerializers(serializers.ModelSerializer):
     material = serializers.StringRelatedField(read_only=True)
     reed = serializers.StringRelatedField(read_only=True)
     size = serializers.StringRelatedField(read_only=True)
+    design = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Carpet
