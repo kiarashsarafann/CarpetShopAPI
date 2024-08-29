@@ -26,3 +26,8 @@ class MaterialViewSet(viewsets.ModelViewSet):
 class ReedViewSet(viewsets.ModelViewSet):
     queryset = Reed.objects.all()
     serializer_class = ReedSerilizers
+
+
+class DesignViewSet(viewsets.ModelViewSet):
+    queryset = Design.objects.all()
+    serializer_class = DesignSerializers
