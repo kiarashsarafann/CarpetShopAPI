@@ -3,10 +3,11 @@ from django.db import models
 
 class Carpet(models.Model):
     title = models.CharField(max_length=64, verbose_name='نام فرش')
-    image = models.ImageField(upload_to='uploads', verbose_name="عکس")
+    image = models.ImageField(upload_to='carpets', verbose_name="عکس")
     size = models.ForeignKey(to='Size', on_delete=models.CASCADE, related_name='سایز', verbose_name="سایز فرش")
     material = models.ForeignKey(to='Material', on_delete=models.CASCADE, related_name='جنس', verbose_name='جنس فرش')
     reed = models.ForeignKey(to='Reed', on_delete=models.CASCADE, related_name='شانه', verbose_name='شانه قرش')
+    design = models.ForeignKey(to='Design', on_delete=models.CASCADE, related_name='نقشه', verbose_name='نقشه فرش')
 
     def __str__(self):
         return self.title
@@ -21,14 +22,22 @@ class Size(models.Model):
 
 class Material(models.Model):
     title = models.CharField(max_length=64, verbose_name='جنس')
-    image = models.ImageField(upload_to='uploads', verbose_name="عکس")
+    image = models.ImageField(upload_to='materials', verbose_name="عکس")
 
     def __str__(self):
         return self.title
 
 
 class Reed(models.Model):
-    title = models.CharField(max_length=64, verbose_name='نام شانه')
+    title = models.CharField(max_length=64, verbose_name='شانه')
+
+    def __str__(self):
+        return self.title
+
+
+class Design(models.Model):
+    title = models.CharField(max_length=64, verbose_name="نقشه")
+    image = models.ImageField(upload_to='design', verbose_name='عکس')
 
     def __str__(self):
         return self.title
