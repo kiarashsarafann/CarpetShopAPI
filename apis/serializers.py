@@ -2,8 +2,9 @@ import secrets
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.validators import UniqueValidator
-from carpets.models import *
-from users.models import *
+from carpets.models import Carpet, Reed, Size, Design, Material
+from users.models import CustomUser
+from cart.models import Cart, CartItem
 
 
 class SizeSerializers(serializers.ModelSerializer):
@@ -39,6 +40,35 @@ class CarpetSerializers(serializers.ModelSerializer):
     class Meta:
         model = Carpet
         fields = '__all__'
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    carpet = CarpetSerializers()
+    material = MaterialSerilizers()
+
+    class Meta:
+        model = CartItem
+        fields = ['id', 'carpet', 'material', 'quantity', 'get_total_price']
+
+
+class CartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True)
+
+    class Meta:
+        model = CartItem
+        fields = ['id', 'items']
+
+
+class AddCartItemCarpetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = ['carpet', 'quantity']
+
+
+class AddCartItemMaterialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = ['material', 'quantity']
 
 
 class UserSerializers(serializers.ModelSerializer):
